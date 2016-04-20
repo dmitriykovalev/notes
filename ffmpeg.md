@@ -2,13 +2,14 @@
 
 ## ffmpeg
 
-Put raw h264 stream in mp4 container at 10 fps:
+Put raw h264/h265 stream in mp4 container at 10 fps:
 
-    ffmpeg -r 10 -i video.h264 -c:v copy -f mp4 output.mp4
+    ffmpeg -r 10 -i video.h264_or_h265 -c:v copy -f mp4 output.mp4
 
-Put raw h264 stream in mp4 container at 10 fps using stdin/stdout:
+Put raw h264/h265 stream in mp4 container at 10 fps using stdin/stdout:
 
-    cat video.h264 | ffmpeg -r 10 -f h264 -i - -c:v copy -f mp4 - > output.mp4
+    cat video.h264 | ffmpeg -r 10 -f h264 -i - -c:v copy -movflags frag_keyframe+empty_moov -f mp4 - > output.mp4
+    cat video.h265 | ffmpeg -r 10 -f hevc -i - -c:v copy -movflags frag_keyframe+empty_moov -f mp4 - > output.mp4
 
 Save frames as image files:
 
