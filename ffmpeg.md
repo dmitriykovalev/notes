@@ -11,6 +11,10 @@ Put raw h264/h265 stream in mp4 container at 10 fps using stdin/stdout:
     cat video.h264 | ffmpeg -r 10 -f h264 -i - -c:v copy -movflags frag_keyframe+empty_moov -f mp4 - > output.mp4
     cat video.h265 | ffmpeg -r 10 -f hevc -i - -c:v copy -movflags frag_keyframe+empty_moov -f mp4 - > output.mp4
 
+Extract raw h264 stream from mp4 container:
+
+    ffmpeg -i input.mp4 -vcodec copy -bsf h264_mp4toannexb -f h264 output.h264
+
 Save frames as image files:
 
     ffmpeg -i input.mp4 -y -f image2 frame%04d.png
