@@ -79,3 +79,8 @@ Print information in JSON format:
 Play cropped video:
 
     ffplay -vf "crop=3840:2160:0:0" input.mp4
+    
+Play raw video with vertical flip:
+
+    ffplay -f rawvideo -pixel_format gray -video_size 2048x2048 -vf "vflip" video.raw
+
