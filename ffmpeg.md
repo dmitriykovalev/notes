@@ -55,6 +55,14 @@ Record video from V4L2 video source (e.g. web camera):
 
     ffmpeg -f v4l2 -i /dev/video0 out.mp4
 
+Lossless png compression from video.raw to video.avi:
+
+    ffmpeg -f rawvideo -pixel_format gray -video_size 2048x2048 -i video.raw -vf "vflip" -c:v png video.avi  
+
+Decompression from video.avi back to video.raw:
+
+    ffmpeg -i video.avi -f rawvideo -pixel_format gray -video_size 2048x2048 -vf "vflip" video.raw
+
 ## ffprobe
 
 Packet information:
