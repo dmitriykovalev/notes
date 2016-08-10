@@ -2,6 +2,13 @@
 
 ## ffmpeg
 
+Show available codecs, only encoders, only decoders, pixel formats:
+
+    ffmpeg -codecs
+    ffmpeg -encoders
+    ffmpeg -decoders
+    ffmpeg -pix_fmts
+
 Put raw h264/h265 stream in mp4 container at 10 fps:
 
     ffmpeg -r 10 -i video.h264_or_h265 -c:v copy -f mp4 output.mp4
@@ -59,6 +66,10 @@ Lossless png compression from video.raw to video.avi:
 
     ffmpeg -f rawvideo -pixel_format gray -video_size 2048x2048 -i video.raw -vf "vflip" -c:v png video.avi  
 
+Lossless single threaded compression from video.raw to video.avi
+
+    ffmpeg -f rawvideo -pixel_format gray -video_size 2048x2048 -i video.raw -vf "vflip" -threads 1 -c:v png video.avi  
+
 Decompression from video.avi back to video.raw:
 
     ffmpeg -i video.avi -f rawvideo -pixel_format gray -video_size 2048x2048 -vf "vflip" video.raw
@@ -91,4 +102,9 @@ Play cropped video:
 Play raw video with vertical flip:
 
     ffplay -f rawvideo -pixel_format gray -video_size 2048x2048 -vf "vflip" video.raw
+    
+Play raw bayer video:
+
+    ffplay -f rawvideo -pixel_format bayer_rggb8 -video_size 2048x2048  video.raw
+
 
