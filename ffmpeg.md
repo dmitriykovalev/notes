@@ -2,11 +2,12 @@
 
 ## ffmpeg
 
-Show available codecs, only encoders, only decoders, pixel formats:
+Show available codecs, only encoders, only decoders, container formats, pixel formats:
 
     ffmpeg -codecs
     ffmpeg -encoders
     ffmpeg -decoders
+    ffmpeg -formats
     ffmpeg -pix_fmts
 
 Put raw h264/h265 stream in mp4 container at 10 fps:
@@ -43,15 +44,6 @@ Convert yuyv422 to yuv420p:
     ffmpeg -f rawvideo -pix_fmt yuyv422 -s 1280x720 -i video422.yuv \
            -f rawvideo -pix_fmt yuv420p video420.yuv
 
-Play raw yuv formats:
-
-    ffplay -pixel_format yuyv422 -video_size 1280x720 capture422.yuv
-    ffplay -pixel_format yuv420p -video_size 1280x720 capture420.yuv
-
-Display two videos side by side:
-
-    ffplay stefan.y4m -vf "[in]pad=iw*2:ih[left];movie=stefan_cif.y4m[right];[left][right]overlay=w"
-
 Calculate PSNR:
 
     ffmpeg -i stefan.y4m -vf "movie=stefan_cif.y4m [ref], [ref]psnr=stats_file=stats.log" -f rawvideo -y /dev/null
@@ -64,15 +56,15 @@ Record video from V4L2 video source (e.g. web camera):
 
 Lossless png compression from video.raw to video.avi:
 
-    ffmpeg -f rawvideo -pixel_format gray -video_size 2048x2048 -i video.raw -vf "vflip" -c:v png video.avi  
+    ffmpeg -f rawvideo -pix_fmt gray -video_size 2048x2048 -i video.raw -vf "vflip" -c:v png video.avi  
 
 Lossless single threaded compression from video.raw to video.avi
 
-    ffmpeg -f rawvideo -pixel_format gray -video_size 2048x2048 -i video.raw -vf "vflip" -threads 1 -c:v png video.avi  
+    ffmpeg -f rawvideo -pix_fmt gray -video_size 2048x2048 -i video.raw -vf "vflip" -threads 1 -c:v png video.avi  
 
 Decompression from video.avi back to video.raw:
 
-    ffmpeg -i video.avi -f rawvideo -pixel_format gray -video_size 2048x2048 -vf "vflip" video.raw
+    ffmpeg -i video.avi -f rawvideo -pix_fmt gray -video_size 2048x2048 -vf "vflip" video.raw
 
 ## ffprobe
 
@@ -95,16 +87,33 @@ Print information in JSON format:
 
 ## ffplay
 
+Play v4l2 device:
+
+    ffplay -f v4l2 /dev/video0
+
+Play v4l2 device using separate ffmpeg process:
+
+    ffmpeg -f v4l2 -i /dev/video0 -f yuv4mpegpipe -pix_fmt yuv420p - | ffplay -
+
+Play raw yuv formats:
+
+    ffplay -pix_fmt yuyv422 -video_size 1280x720 capture422.yuv
+    ffplay -pix_fmt yuv420p -video_size 1280x720 capture420.yuv
+
+Display two videos side by side:
+
+    ffplay stefan.y4m -vf "[in]pad=iw*2:ih[left];movie=stefan_cif.y4m[right];[left][right]overlay=w"
+
 Play cropped video:
 
     ffplay -vf "crop=3840:2160:0:0" input.mp4
     
 Play raw video with vertical flip:
 
-    ffplay -f rawvideo -pixel_format gray -video_size 2048x2048 -vf "vflip" video.raw
+    ffplay -f rawvideo -pix_fmt gray -video_size 2048x2048 -vf "vflip" video.raw
     
 Play raw bayer video:
 
-    ffplay -f rawvideo -pixel_format bayer_rggb8 -video_size 2048x2048  video.raw
+    ffplay -f rawvideo -pix_fmt bayer_rggb8 -video_size 2048x2048  video.raw
 
 
