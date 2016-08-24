@@ -17,3 +17,11 @@
 [Ultra Video Group Sequences](http://ultravideo.cs.tut.fi/#testsequences)
 
 [Consolidated list of test video clip resources](http://forum.doom9.org/showthread.php?t=135034)
+
+[SFU Network Systems Lab](https://cs-nsl-wiki.cs.surrey.sfu.ca/wiki/Video_Library_and_Tools)
+
+[TESTVID](http://www.testvid.com/)
+
+[Fish Eye Video Sequences](http://www.lms.lnt.de/fisheyedataset/)
+
+
