@@ -11,4 +11,5 @@
 * Huffyuv — http://neuron2.net/www.math.berkeley.edu/benrg/huffyuv-source-2.1.1.zip
 * Dirac — http://diracvideo.org/download/schroedinger/schroedinger-1.0.11.tar.gz
 * OpenHEVC — https://github.com/OpenHEVC/openHEVC
+* SIF1 - http://mysif.ru/
 
