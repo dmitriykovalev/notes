@@ -12,4 +12,6 @@
 * Dirac — http://diracvideo.org/download/schroedinger/schroedinger-1.0.11.tar.gz
 * OpenHEVC — https://github.com/OpenHEVC/openHEVC
 * SIF1 - http://mysif.ru/
+* FFV1 - http://www.ffmpeg.org/~michael/ffv1.html
+
 
