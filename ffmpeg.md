@@ -66,6 +66,16 @@ Decompression from video.avi back to video.raw:
 
     ffmpeg -i video.avi -f rawvideo -pix_fmt gray -video_size 2048x2048 -vf "vflip" video.raw
 
+Convert YUV frame to PNG:
+
+    ffmpeg -pixel_format nv12 -video_size 1024x768 -i image.yuv -y -f image2 image.png
+    
+Convert YUV frame to JPEG with specified quality (2-32):
+
+    ffmpeg -pixel_format nv12 -video_size 1024x768 -i image.yuv  -y -f image2 -qscale:v 2 image.jpg
+    
+
+
 ## ffprobe
 
 Packet information:
@@ -116,4 +126,11 @@ Play raw bayer video:
 
     ffplay -f rawvideo -pix_fmt bayer_rggb8 -video_size 2048x2048  video.raw
 
+Display single raw YUV frame:
 
+    ffplay -pix_fmt nv12 -video_size 1024x768 frame.yuv
+
+Display single 16-bit RAW frame as a grayscale image:
+
+    ffplay -pix_fmt gray16le -video_size 1024x768 frame.raw
+ 
