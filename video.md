@@ -1,4 +1,6 @@
-# Test Video Sequences
+# Test Data 
+
+## Video
 
 [Xiph.org Test Media](https://media.xiph.org/)
 
@@ -26,5 +28,24 @@
 
 [MPEG-2 Transport Stream Test Patterns and Tools](http://www.w6rz.net/)
 
+## Images
+
+[Lenna](https://en.wikipedia.org/wiki/Lenna)
+
+[The USC-SIPI Image Database](http://sipi.usc.edu/database/)
+
+[Kodak Lossless True Color Image Suite](http://r0k.us/graphics/kodak/)
+
+[THE NEW TEST IMAGES](http://imagecompression.info/test_images/)
+
+[Public-Domain Test Images for Homeworks and Projects](http://homepages.cae.wisc.edu/~ece533/images/)
+
+[TESTIMAGES](https://testimages.org/)
+
+[CIPR Still Images](http://www.cipr.rpi.edu/resource/stills/index.html)
+
+[Image Compression Grand Challenge at ICIP 2016](https://jpeg.org/items/20151126_icip_challenge.html)
+
+[Amsterdam Library of Object Images (ALOI)](http://aloi.science.uva.nl/)
 
 
