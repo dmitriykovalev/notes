@@ -28,9 +28,21 @@
 
 [MPEG-2 Transport Stream Test Patterns and Tools](http://www.w6rz.net/)
 
+[Mplayer test samples](http://samples.mplayerhq.hu/)
+
+## Movies
+
+[Elephants Dream](https://orange.blender.org/)
+
+[Big Buck Bunny](https://peach.blender.org/)
+
+[Sintel](https://durian.blender.org/)
+
 ## Images
 
 [Lenna](https://en.wikipedia.org/wiki/Lenna)
+
+[Waterloo Bragzone Colourset](http://links.uwaterloo.ca/Repository.html)
 
 [The USC-SIPI Image Database](http://sipi.usc.edu/database/)
 
@@ -47,5 +59,12 @@
 [Image Compression Grand Challenge at ICIP 2016](https://jpeg.org/items/20151126_icip_challenge.html)
 
 [Amsterdam Library of Object Images (ALOI)](http://aloi.science.uva.nl/)
+
+## Audio
+
+[Speech Codec Wav Samples](http://www.signalogic.com/index.pl?page=codec_samples)
+[Sound Tests & Clips](http://www.kozco.com/tech/soundtests.html)
+
+
 
 
