@@ -27,6 +27,10 @@ Save frames as image files:
 
     ffmpeg -i input.mp4 -y -f image2 frame%04d.png
 
+Save keyframes as image files:
+
+    ffmpeg -skip_frame nokey -i input.mp4 -vsync 0 -y -f image2 keyframe%04d.png
+
 Save signle frame as image file:
 
     ffmpeg -ss 1.0 -i input.mp4 -frames:v 1 -f singlejpeg - > frame.jpg
