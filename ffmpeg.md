@@ -14,14 +14,18 @@ Put raw h264/h265 stream in mp4 container at 10 fps:
 
     ffmpeg -r 10 -i video.h264_or_h265 -c:v copy -f mp4 output.mp4
 
-Put raw h264/h265 stream in mp4 container at 10 fps using stdin/stdout:
+Put raw h264/h265 stream in `mp4` container at 10 fps using stdin/stdout:
 
     cat video.h264 | ffmpeg -r 10 -f h264 -i - -c:v copy -movflags frag_keyframe+empty_moov -f mp4 - > output.mp4
     cat video.h265 | ffmpeg -r 10 -f hevc -i - -c:v copy -movflags frag_keyframe+empty_moov -f mp4 - > output.mp4
 
-Extract raw h264 stream from mp4 container:
+Extract raw h264 stream from `mp4` container:
 
     ffmpeg -i input.mp4 -vcodec copy -bsf h264_mp4toannexb -f h264 output.h264
+
+Put image files in `avi` container at 10 fps starting from IMG_0495.JPG:
+
+    ffmpeg -f image2 -start_number 495 -r 10 -i IMG_%4d.JPG -c:v copy -f avi output.avi
 
 Save frames as image files:
 
