@@ -82,7 +82,9 @@ Convert YUV frame to JPEG with specified quality (2-32):
 
     ffmpeg -pixel_format nv12 -video_size 1024x768 -i image.yuv  -y -f image2 -qscale:v 2 image.jpg
     
+Convert audio file to `wav` (1 channel, 16000 Hz sample rate, 2 bytes per sample):
 
+    ffmpeg -i input.mp3 -ac 1 -ar 16000 -c pcm_s16le output.wav
 
 ## ffprobe
 
