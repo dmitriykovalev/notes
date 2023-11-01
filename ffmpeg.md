@@ -57,6 +57,7 @@ ffmpeg -f rawvideo -pix_fmt yuyv422 -s 1280x720 -i video422.yuv \
 # Convert nv12 to mjpeg (mp4 or avi):
 ffmpeg -f rawvideo -pixel_format nv12 -video_size 1920x1080 -i video.yuv -vcodec mjpeg output.mp4
 ffmpeg -f rawvideo -pixel_format nv12 -video_size 1920x1080 -i video.yuv -vcodec mjpeg output.avi
+ffmpeg -f rawvideo -pixel_format nv12 -video_size 1920x1080 -i video.yuv -vf extractplanes=y -vcodec mjpeg output.mp4
 
 # Convert nv12 to mpeg4 (mp4):
 ffmpeg -f rawvideo -pixel_format nv12 -video_size 1920x1080 -i video.yuv -vcodec mpeg4 output.mp4
