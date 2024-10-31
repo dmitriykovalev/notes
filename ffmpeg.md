@@ -172,3 +172,9 @@ Display single 16-bit RAW frame as a grayscale image:
 ```shell
 ffplay -pix_fmt gray16le -video_size 1024x768 frame.raw
 ```
+
+Play raw audio:
+```shell
+ffplay -help demuxer=s16le
+ffplay -f s16le -ch_layout mono -sample_rate 44100 -i raw
+```
