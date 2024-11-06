@@ -7,8 +7,13 @@ Show available codecs, only encoders, only decoders, container formats, pixel fo
 ffmpeg -codecs
 ffmpeg -encoders
 ffmpeg -decoders
+
 ffmpeg -formats
 ffmpeg -pix_fmts
+ffmpeg -sample_fmts
+
+ffmpeg -muxers
+ffmpeg -demuxers
 ```
 
 Convert video to multiple images:
@@ -173,8 +178,83 @@ Display single 16-bit RAW frame as a grayscale image:
 ffplay -pix_fmt gray16le -video_size 1024x768 frame.raw
 ```
 
+PCM audio formats:
+```console
+$ ffplay -hide_banner -formats | grep PCM
+ DE  alaw            PCM A-law
+ DE  f32be           PCM 32-bit floating-point big-endian
+ DE  f32le           PCM 32-bit floating-point little-endian
+ DE  f64be           PCM 64-bit floating-point big-endian
+ DE  f64le           PCM 64-bit floating-point little-endian
+ DE  mulaw           PCM mu-law
+ DE  s16be           PCM signed 16-bit big-endian
+ DE  s16le           PCM signed 16-bit little-endian
+ DE  s24be           PCM signed 24-bit big-endian
+ DE  s24le           PCM signed 24-bit little-endian
+ DE  s32be           PCM signed 32-bit big-endian
+ DE  s32le           PCM signed 32-bit little-endian
+ DE  s8              PCM signed 8-bit
+ DE  u16be           PCM unsigned 16-bit big-endian
+ DE  u16le           PCM unsigned 16-bit little-endian
+ DE  u24be           PCM unsigned 24-bit big-endian
+ DE  u24le           PCM unsigned 24-bit little-endian
+ DE  u32be           PCM unsigned 32-bit big-endian
+ DE  u32le           PCM unsigned 32-bit little-endian
+ DE  u8              PCM unsigned 8-bit
+ DE  vidc            PCM Archimedes VIDC
+```
+Additional `s16le` options:
+```console
+$ ffplay -hide_banner -help demuxer=s16le
+Demuxer s16le [PCM signed 16-bit little-endian]:
+    Common extensions: sw.
+pcm demuxer AVOptions:
+  -sample_rate       <int>        .D.........  (from 0 to INT_MAX) (default 44100)
+  -ch_layout         <channel_layout> .D.........  (default "mono")
+```
+
 Play raw audio:
 ```shell
-ffplay -help demuxer=s16le
-ffplay -f s16le -ch_layout mono -sample_rate 44100 -i raw
+$ ffplay -f s16le -sample_rate 44100 -ch_layout mono   mono.raw
+$ ffplay -f s16le -sample_rate 48000 -ch_layout stereo stereo.raw
+```
+
+FFmpeg devices:
+```console
+$ ffmpeg -hide_banner -devices
+Devices:
+ D. = Demuxing supported
+ .E = Muxing supported
+ ---
+  E audiotoolbox    AudioToolbox output device
+ D  avfoundation    AVFoundation input device
+ D  lavfi           Libavfilter virtual input device
+  E sdl,sdl2        SDL2 output device
+ D  x11grab         X11 screen capture, using XCB
+```
+
+Play on macOS via [audiotoolbox](https://github.com/FFmpeg/FFmpeg/blob/master/libavdevice/audiotoolbox.m#L289):
+```shell
+# List output devices 
+ffmpeg -hide_banner -i audio.wav -f audiotoolbox  -list_devices true -
+
+# Default output device
+ffmpeg -hide_banner -i audio.wav -f audiotoolbox -
+
+# Output device #0
+ffmpeg -hide_banner -i audio.wav -f audiotoolbox 0
+ffmpeg -hide_banner -i audio.wav -f audiotoolbox -audio_device_index 0 -
+
+# Output device #2
+ffmpeg -hide_banner -i audio.wav -f audiotoolbox 2
+ffmpeg -hide_banner -i audio.wav -f audiotoolbox -audio_device_index 2 -
+```
+
+Record on macOS via [avfoundation](https://github.com/FFmpeg/FFmpeg/blob/master/libavdevice/avfoundation.m#L1275):
+```shell
+# List input devices
+ffmpeg -f avfoundation -list_devices true -i ""
+
+# Record
+ffmpeg -f avfoundation -i ":1" record.wav
 ```
