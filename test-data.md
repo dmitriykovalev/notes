@@ -38,6 +38,7 @@
 
 ## Audio
 
+* [University of Iowa Musical Instrument Samples (MIS)](https://theremin.music.uiowa.edu/MIS.html)
 * [Speech Codec Wav Samples](http://www.signalogic.com/index.pl?page=codec_samples)
 * [Sound Tests & Clips](http://www.kozco.com/tech/soundtests.html)
 
