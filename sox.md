@@ -1,6 +1,6 @@
 # sox
 
-From `max sox`:
+From `man sox`:
 
 > Use the -V option to see what processing SoX has automatically added. The -D option may be given to override automatic dithering.  To invoke dithering manually (e.g. to select a noise-shaping curve), see the dither effect.
 
@@ -23,10 +23,16 @@ sox -V -c 2 -n -r 48000 -c 2 -b 16 left-right-48k-2ch-2000ms.wav \
 ```
 
 Generate stereo files with zero channels using `-D` or `--no-dither`:
-```
+```shell
 # sample_rate_hz=48000; left_hz=1000
 sox -D -V -n -r 48000 -b 16 sine-48k-5000ms-L.wav synth 5 sine 1000 vol 0.1 remix 1 0
 
 # sample_rate_hz=48000; right_hz=1000
 sox -D -V -n -r 48000 -b 16 sine-48k-5000ms-R.wav synth 5 sine 1000 vol 0.1 remix 0 1
+```
+
+Generate silence for 5 seconds:
+```shell
+sox -V -D -n -r 48000 -c 1 -b 16 silence-1ch.wav trim 0 5
+sox -V -D -n -r 48000 -c 2 -b 16 silence-2ch.wav trim 0 5
 ```
